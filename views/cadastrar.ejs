@@ -1,0 +1,39 @@
+<%- include('partes/header.ejs') %>
+<body>
+  <% let id = ''; let titulo = ''; let descricao = ''; let botao = '';
+  if(noticias[0]){ titulo = noticias[0].noti_tx_titulo; descricao =
+  noticias[0].noti_tx_descricao; id=noticias[0].id; botao = 'Atualizar';}else{
+  titulo = '';descricao=''; botao = 'Cadastrar';} %>
+  <form action="/cadastrar_noticia" method="POST" style="margin: 2vw 0">
+    <input type="hidden" name="id" value="<%= id %>" />
+    <div class="container">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Titulo</label>
+        <input
+          type="text"
+          class="form-control"
+          id="titulo"
+          name="titulo"
+          value="<%= titulo %>"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label"
+          >Descrição</label
+        >
+        <textarea
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+          name="descricao"
+          value="<%= descricao %>"
+        >
+<%= descricao %></textarea
+        >
+        <br />
+        <input class="btn btn-warning" type="submit" value="<%= botao %>" />
+      </div>
+    </div>
+  </form>
+</body>
+<%- include('partes/footer.ejs') %>

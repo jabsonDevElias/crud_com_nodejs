@@ -1,0 +1,65 @@
+<%- include('partes/header.ejs') %>
+<body>
+  <div class="container">
+    <form action="/" method="get">
+      <div class="row g-3">
+        <div class="col-md-2">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Id"
+            aria-label="Id"
+            name="id"
+          />
+        </div>
+        <div class="col-md-8">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Titulo"
+            aria-label="Titulo"
+            name="titulo"
+          />
+        </div>
+        <div class="col-md-2">
+          <input type="submit" class="btn btn-warning" value="Buscar" />
+        </div>
+      </div>
+    </form>
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th scope="col">COD</th>
+          <th scope="col">Titulo</th>
+          <th scope="col">Desc. Breve</th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Excluir</th>
+          <th scope="col">Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% noticias.forEach((item)=>{ %>
+        <tr>
+          <th scope="row"><%= item.id %></th>
+          <td><%= item.noti_tx_titulo %></td>
+          <td><%= item.noti_tx_describreve %></td>
+          <td><%= item.noti_tx_descricao %></td>
+          <td>
+            <form action="/excluir" method="post">
+              <input type="hidden" name="id" value="<%= item.id %>" />
+              <input class="btn btn-danger" type="submit" value="Excluir" />
+            </form>
+          </td>
+          <td>
+            <form action="/cadastrar" method="get">
+              <input type="hidden" name="id" value="<%= item.id %>" />
+              <input class="btn btn-warning" type="submit" value="Editar" />
+            </form>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</body>
+<%- include('partes/footer.ejs') %>
